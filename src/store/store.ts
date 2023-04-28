@@ -6,3 +6,5 @@ const combinedReducer = combineReducers({
     listReducer: ListReducer
 });
 export const store = createStore(combinedReducer, applyMiddleware(thunk));
+
+export type RootStateType = ReturnType<typeof store.getState>;

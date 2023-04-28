@@ -1,7 +1,18 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { listReducerDataState, listReducerErrorState, listReducerLoadingState } from '../../redux/List/List.selector';
+import { getAPICall } from '../../Services/List.service';
 
-function List(props: any) {
-  console.log(props);
+function List() {
+
+  const dispatch = useDispatch();
+
+  // const {data,loading, error} = useSelector(getListReducerState);
+
+  const loading = useSelector(listReducerLoadingState);
+  const data = useSelector(listReducerDataState);
+  const error = useSelector(listReducerErrorState);
+
 
   const getList = () => {
     return (
@@ -15,7 +26,7 @@ function List(props: any) {
             </tr>
           </thead>
           <tbody>
-            {props.data.map((obj: any) => {
+            {data?.map((obj: any) => {
               return (
                 <tr key={obj.id}>
                   <td>{obj.id}</td>
@@ -31,16 +42,16 @@ function List(props: any) {
   }
   return (
     <div>
-      <button onClick={() => props.getData()}>Get Remote data</button>
+      <button onClick={() => dispatch(getAPICall() as any)}>Get Remote data</button>
 
       <div>
         {
-          props.loading ?
+          loading ?
             <p>Loading....</p> :
-            props.data ?
+            data ?
               getList() :
-              props.error ?
-                <p>{props.error}</p> :
+              error ?
+                <p>{error}</p> :
                 null
         }
       </div>

@@ -3,6 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './components/navbar/Navbar';
 import { createContext, lazy, Suspense, useState } from 'react';
+import ProtectedRoute from './components/protected/ProtectedRoute';
 
 const Login = lazy(() => import('./pages/login/Login'));
 const Register = lazy(() => import('./pages/register/Register'));

@@ -24,7 +24,11 @@ function Products() {
                     products.map((obj) => {
                         return (
                             <button key={obj.id}
-                                onClick={() => navigate(`${obj.label}`)}>
+                                onClick={() => navigate(`${obj.id}`, {
+                                    state: {
+                                        name: obj.label
+                                    }
+                                })}>
                                 {obj.label}
                             </button>
                         )

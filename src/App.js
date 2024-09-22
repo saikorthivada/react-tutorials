@@ -19,10 +19,7 @@ function App() {
           <Route path='register' element={<Register />} />
           <Route path='products' element={<Products />}>
             <Route index element={<Details />} />
-            <Route path=':label' element={<Details />}/>
-            {/* <Route path='1' element={<Choclate />} />
-            <Route path='2' element={<Milk />} />
-            <Route path='3' element={<Ghee />} /> */}
+            <Route path=':id' element={<Details />}/>
           </Route>
         </Routes>
       </BrowserRouter>

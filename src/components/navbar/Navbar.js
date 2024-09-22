@@ -26,7 +26,7 @@ function Navbar() {
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" to={'/register'} style={getActiveStyles}>
+                            <NavLink className="nav-link" to={'/register'} state={{isAuthorized: 'sai'}} style={getActiveStyles}>
                                 {
                                     ({ isActive }) => {
                                         return isActive ? <strong>Register</strong> : <span>Register</span>

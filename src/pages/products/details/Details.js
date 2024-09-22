@@ -1,13 +1,16 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams, useSearchParams } from 'react-router-dom'
 
 function Details() {
 
     const params = useParams();
-    console.log(params);
-  return (
-    <div>Details - {params?.label}</div>
-  )
+    const location = useLocation();
+    console.log(location);
+    return (
+        <div>
+            Details - {params?.id} - {location?.state?.name}
+        </div>
+    )
 }
 
 export default Details

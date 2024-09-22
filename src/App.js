@@ -4,6 +4,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import Navbar from './components/navbar/Navbar';
+import Products from './pages/products/Products';
+import Details from './pages/products/details/Details';
+import Choclate from './pages/products/details/Choclate';
+import Milk from './pages/products/details/Milk';
+import Ghee from './pages/products/details/Ghee';
 
 function App() {
   return (
@@ -15,6 +20,12 @@ function App() {
           <Route path='' element={<Login />} />
           <Route path='login' element={<Login />} />
           <Route path='register' element={<Register />} />
+          <Route path='products' element={<Products />}>
+            <Route index element={<Details />} />
+            <Route path='1' element={<Choclate />} />
+            <Route path='2' element={<Milk />} />
+            <Route path='3' element={<Ghee />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>

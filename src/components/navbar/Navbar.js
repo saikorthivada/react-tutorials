@@ -34,6 +34,16 @@ function Navbar() {
                                 }
                             </NavLink>
                         </li>
+
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to={'/products'} style={getActiveStyles}>
+                                {
+                                    ({ isActive }) => {
+                                        return isActive ? <strong>Products</strong> : <span>Products</span>
+                                    }
+                                }
+                            </NavLink>
+                        </li>
                     </ul>
                 </div>
             </div>

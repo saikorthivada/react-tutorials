@@ -27,16 +27,9 @@ function App() {
               <Route path='' element={<Login />} />
               <Route path='login' element={<Login />} />
               <Route path='register' element={<Register />} />
-              <Route path='products' element={<ProtectedRoute>
+              <Route path='products/*' element={<ProtectedRoute>
                 <Products />
-              </ProtectedRoute>}>
-                <Route index element={<ProtectedRoute>
-                  <Details />
-                </ProtectedRoute>} />
-                <Route path=':id' element={<ProtectedRoute>
-                  <Details />
-                </ProtectedRoute>} />
-              </Route>
+              </ProtectedRoute>} />
             </Routes>
           </BrowserRouter>
         </Suspense>

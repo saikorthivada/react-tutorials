@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
-import { Outlet, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import ProductRoutes from './ProductRoutes';
 
 function Products() {
     const navigate = useNavigate();
@@ -34,7 +35,7 @@ function Products() {
                         )
                     })
                 }
-                <Outlet />
+              <ProductRoutes />
             </Fragment>
         </div>
     )

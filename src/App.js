@@ -6,6 +6,7 @@ import Register from './Register/Register';
 import PreLogin from './Layouts/Prelogin';
 import PostLogin from './Layouts/Postlogin';
 import Dashboard from './Dashboard/Dashboard';
+import Products from './Products/Products';
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard',
         element: <Dashboard />
+      },
+      {
+        path: '/products',
+        element: <Products />
       }
     ]
   }

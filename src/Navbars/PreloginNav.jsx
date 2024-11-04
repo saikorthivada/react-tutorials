@@ -1,13 +1,20 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
+export const activeLinks = ({isActive}) => {
+    if (isActive) {
+        return {
+            color: 'red'
+        }
+    }
+}
 function PreloginNav() {
     return (
         <div>
             <h3>PreloginNav</h3>
-            <Link to={'/login'}>Login</Link>
+            <NavLink to={'/login'} style={activeLinks}>Login</NavLink>
             &nbsp;
-            <Link to={'/register'}>Register</Link>
+            <NavLink to={'/register'} style={activeLinks}>Register</NavLink>
         </div>
     )
 }

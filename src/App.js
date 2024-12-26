@@ -7,7 +7,20 @@ import PreLogin from './Layouts/Prelogin';
 import PostLogin from './Layouts/Postlogin';
 import Dashboard from './Dashboard/Dashboard';
 import Products from './Products/Products';
+import Confirmation from './Products/Confirmation';
 
+const formAction = async ({request}) => {
+  const formData = await request.formData();
+  const name = formData.get('name');
+  const email = formData.get('email');
+  console.log(name, email);
+  return new Response(null, {
+    status: 302,
+    headers: {
+      Location: `/confirmation?name=${name}&email=${email}`,
+    },
+  });
+}
 const router = createBrowserRouter([
   {
     path: '',
@@ -37,7 +50,12 @@ const router = createBrowserRouter([
       },
       {
         path: '/products',
-        element: <Products />
+        element: <Products />,
+        action: formAction
+      },
+      {
+        path:'/confirmation',
+        element: <Confirmation />
       }
     ]
   }

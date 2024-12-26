@@ -14,12 +14,7 @@ const formAction = async ({request}) => {
   const name = formData.get('name');
   const email = formData.get('email');
   console.log(name, email);
-  return new Response(null, {
-    status: 302,
-    headers: {
-      Location: `/confirmation?name=${name}&email=${email}`,
-    },
-  });
+  return {success: true}
 }
 const router = createBrowserRouter([
   {

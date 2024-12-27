@@ -8,6 +8,25 @@ import PostLogin from './Layouts/Postlogin';
 import Dashboard from './Dashboard/Dashboard';
 import Products from './Products/Products';
 
+const formAction = async ({request}) => {
+  const formData = await request.formData();
+  const name = formData.get('name');
+  const email = formData.get('email');
+
+  console.log(name, email);
+  const errors = {};
+  if (!name) errors.name ="Name is required";
+  if (!email) errors.email = "Email is required";
+
+  if (Object.keys(errors)?.length) {
+    return {
+      errors
+    }
+  }
+  return {
+    success: true
+  }
+}
 const router = createBrowserRouter([
   {
     path: '',
@@ -37,7 +56,8 @@ const router = createBrowserRouter([
       },
       {
         path: '/products',
-        element: <Products />
+        element: <Products />,
+        action: formAction
       }
     ]
   }

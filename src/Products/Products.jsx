@@ -1,32 +1,34 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { useEffect } from 'react'
-import { Outlet, useLoaderData, useNavigate } from 'react-router-dom';
+import { Await, Outlet, useLoaderData, useNavigate } from 'react-router-dom';
 
 function Products() {
-
   const loaderData = useLoaderData();
-  // console.log(loaderData, "current value");
-  const navigate = useNavigate();
   useEffect(() => {
-    // console.log('inside products');
-    // fetch('https://jsonplaceholder.typicode.com/todos').then(res => {
-    //   res.json().then((response) => {
-    //     console.log(response);
-    //   })
-    // })
+    console.log('products useffect');
   }, []);
   return (
     <div>
       <h5>Products</h5>
       <Outlet />
-      {
-        loaderData?.map((item) => {
-          return <div key={item.id}>
-            <button onClick={() => navigate(`/products/${item.id}`)}>{item.title}</button>
-          </div>
-        })
-      }
-
+      <Suspense fallback={<h1>Loading post</h1>}>
+        <Await resolve={loaderData.posts}>
+          {
+            (actualData) => <h5>{actualData.title}</h5>
+          }
+        </Await>
+      </Suspense>
+      <Suspense fallback={<h1>Loading data</h1>}>
+        <Await resolve={loaderData.data}>
+          {
+            (actualData) => {
+              return actualData?.map((res) => {
+                return <p>{res.title}</p>
+              })
+            }
+          }
+        </Await>
+      </Suspense>
     </div>
   )
 }

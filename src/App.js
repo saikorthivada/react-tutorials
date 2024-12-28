@@ -1,6 +1,6 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { createBrowserRouter, Link, NavLink, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, defer, Link, NavLink, RouterProvider } from 'react-router-dom';
 import Login from './Login/Login';
 import Register from './Register/Register';
 import PreLogin from './Layouts/Prelogin';
@@ -10,15 +10,25 @@ import Products from './Products/Products';
 import ProductDetails from './Products/ProductDetails';
 
 const fetchTodos = async () => {
-  const data = await fetch('https://jsonplaceholder.typicode.com/todos');
-  const response = await data.json();
-  // console.log(response);
-  return response;
+  const data = fetch('https://jsonplaceholder.typicode.com/todos')
+  .then((response) => {
+    return response.json();
+  });
+  const posts = fetch(`https://jsonplaceholder.typicode.com/posts/1`)
+  .then((res) => {
+    return res.json();
+  })
+  console.log("Fetchtodos");
+  return defer({
+    data,
+    posts
+  });
 }
 
 const fetchSpecificTodo = async ({params}) => {
-  console.log(params);
-  const data = await fetch(`https://jsonplaceholder.typicode.com/todos/${params?.id}`);
+  const data =
+  await fetch
+  (`https://jsonplaceholder.typicode.com/todos/${params?.id}`);
   const response = await data.json();
   console.log(response);
   return response;
